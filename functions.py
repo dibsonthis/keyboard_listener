@@ -1,4 +1,4 @@
-from pynput.keyboard import KeyCode
+from pynput.keyboard import KeyCode, Key, Controller
 from special_characters import control_characters, alt_characters
 
 current_key = None
@@ -16,6 +16,12 @@ def key_string(key):
     key = key.replace('Key.', '').replace('"','')
     key = eval(key)
     return key
+
+def release_all_special_keys():
+    keyboard = Controller()
+    special_keys = [Key.ctrl_l, Key.ctrl_r, Key.ctrl, Key.shift, Key.shift_r, Key.alt, Key.alt_l, Key.alt_r]
+    for key in special_keys:
+        keyboard.release(key)
 
 def activate_special_key_if_pressed(key):
     global is_special_key_pressed
@@ -35,9 +41,19 @@ def deactivate_special_key_if_released(key):
     elif value(key) == 'alt_l' or value(key) == 'alt_r':
         is_special_key_pressed['alt'] = False
 
+# def combo(combination, current_key=current_key):
+#     special_keys = combination[0]
+#     character = combination[1]
+#     if 'ctrl' in special_keys and 'alt' not in special_keys:
+#         character = control_characters[character]
+#     if 'ctrl' in special_keys and 'alt' in special_keys:
+#         character = alt_characters[character]
+#     if all( is_special_key_pressed[x] for x in special_keys ) and current_key == character:
+#         return True
+
 def combo(combination, current_key=current_key):
-    special_keys = combination[0]
-    character = combination[1]
+    special_keys = combination.special_keys
+    character = combination.character
     if 'ctrl' in special_keys and 'alt' not in special_keys:
         character = control_characters[character]
     if 'ctrl' in special_keys and 'alt' in special_keys:
