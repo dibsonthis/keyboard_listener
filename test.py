@@ -1,9 +1,8 @@
+from keyboard_listener import KeyboardListener
 from functions import Combo
 from pynput.keyboard import Key, Controller
 import pyperclip
 import time
-
-# Define combo functions here:
 
 def change_case(case):
     keyboard = Controller()
@@ -52,8 +51,6 @@ def change_case(case):
     print(f'pasted: {data}')
     print(f'{case} done')
 
-# Insert combos here:
-
 combos = {
 
 'lowercase': Combo(['alt'], 'l', change_case, case='lower'),
@@ -66,3 +63,6 @@ combos = {
 'evaluate': Combo(['alt'], ']', change_case, case='eval')
 }
 
+
+keyboard_listener = KeyboardListener(combinations=combos)
+keyboard_listener.run()

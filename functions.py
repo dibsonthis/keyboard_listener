@@ -1,6 +1,17 @@
 from pynput.keyboard import KeyCode, Key, Controller
 from special_characters import control_characters, alt_characters
 
+class Combo:
+    def __init__(self, special_keys, character, function, *args, **kwargs):
+        self.special_keys = special_keys
+        self.character = character
+        self.function = function
+        self.args = args
+        self.kwargs = kwargs
+    def execute(self):
+        self.function(*self.args, **self.kwargs)
+
+
 current_key = None
 
 is_special_key_pressed = {'ctrl':False, 'shift':False, 'alt':False}
