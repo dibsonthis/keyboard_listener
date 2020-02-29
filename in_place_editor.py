@@ -3,14 +3,24 @@ from pynput.keyboard import Key, Controller
 import pyperclip
 import time
 
-def modify_text(modification):
+def copy_text():
     keyboard = Controller()
-    data = pyperclip.paste()
-    print(f'current: {data}')
     keyboard.press(Key.ctrl_l)
     keyboard.press('c')
     keyboard.release(Key.ctrl_l)
     time.sleep(0.1)
+
+def paste_text():
+    keyboard = Controller()
+    keyboard.press(Key.ctrl_l)
+    keyboard.press('v')
+    keyboard.release(Key.ctrl_l)
+
+
+def modify_text(modification):
+    data = pyperclip.paste()
+    print(f'current: {data}')
+    copy_text()
     data = pyperclip.paste()
     print(f'copied: {data}')
 
@@ -44,9 +54,7 @@ def modify_text(modification):
 
     print(f'changed to: {data}')
     pyperclip.copy(data)
-    keyboard.press(Key.ctrl_l)
-    keyboard.press('v')
-    keyboard.release(Key.ctrl_l)
+    paste_text()
     print(f'pasted: {data}')
     print(f'{modification} done')
 
