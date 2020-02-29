@@ -24,6 +24,7 @@ def change_case(case):
     time.sleep(0.1)
     data = pyperclip.paste()
     print(f'copied: {data}')
+
     if case == 'upper':
         data = data.upper()
     elif case == 'lower':
@@ -34,6 +35,24 @@ def change_case(case):
         data = ''.join([x.capitalize() if x == x.lower() else x.lower() for x in data])
     elif case == 'reverse':
         data = data[::-1]
+    elif case == 'capitalize_every_word':
+        data = data.split(' ')
+        data = [x.capitalize() for x in data]
+        data = ' '.join(data)
+    elif case == 'alternate':
+        data = [x for x in data]
+        for index, character in enumerate(data):
+            if index % 2 == 0:
+                data[index] = character.upper()
+            else:
+                data[index] = character.lower()
+        data = ''.join(data)
+    elif case == 'eval':
+        try:
+            data = eval(data)
+        except:
+            data = data
+
     print(f'changed to: {data}')
     pyperclip.copy(data)
     keyboard.press(Key.ctrl_l)
@@ -50,6 +69,9 @@ combos = {
 'uppercase': Combo(['alt'], 'u', change_case, case='upper'),
 'flip': Combo(['alt'], 'k', change_case, case='flip'),
 'capitalize': Combo(['alt'], 'c', change_case, case='capitalize'),
-'capitalize': Combo(['alt'], 'r', change_case, case='reverse')
+'reverse': Combo(['alt'], 'r', change_case, case='reverse'),
+'capitalize_every_word': Combo(['alt'], 'g', change_case, case='capitalize_every_word'),
+'alternate': Combo(['alt'], 'a', change_case, case='alternate'),
+'evaluate': Combo(['alt'], ']', change_case, case='eval')
 }
 
