@@ -1,20 +1,9 @@
 from pynput.keyboard import KeyCode, Key, Controller
 from special_characters import control_characters, alt_characters
 
-class Combo:
-    def __init__(self, special_keys, character, function, *args, **kwargs):
-        self.special_keys = special_keys
-        self.character = character
-        self.function = function
-        self.args = args
-        self.kwargs = kwargs
-    def execute(self):
-        self.function(*self.args, **self.kwargs)
-
-
 current_key = None
 
-is_special_key_pressed = {'ctrl':False, 'shift':False, 'alt':False}
+is_special_key_pressed = {'ctrl':False, 'shift':False, 'alt':False, 'cmd':False}
 
 def value(key):
     try:
@@ -42,6 +31,8 @@ def activate_special_key_if_pressed(key):
         is_special_key_pressed['shift'] = True
     elif value(key) == 'alt_l' or value(key) == 'alt_r':
         is_special_key_pressed['alt'] = True
+    elif value(key) == 'cmd' or value(key) == 'cmd_l' or value(key) == 'cmd_r':
+        is_special_key_pressed['cmd'] = True
 
 def deactivate_special_key_if_released(key):
     global is_special_key_pressed
@@ -51,6 +42,8 @@ def deactivate_special_key_if_released(key):
         is_special_key_pressed['shift'] = False
     elif value(key) == 'alt_l' or value(key) == 'alt_r':
         is_special_key_pressed['alt'] = False
+    elif value(key) == 'cmd' or value(key) == 'cmd_l' or value(key) == 'cmd_r':
+        is_special_key_pressed['cmd'] = False
 
 def combo(combination, current_key=current_key):
     special_keys = combination.special_keys

@@ -1,10 +1,9 @@
-from keyboard_listener import KeyboardListener
-from functions import Combo
+from keyboard_listener import KeyboardListener, Combo
 from pynput.keyboard import Key, Controller
 import pyperclip
 import time
 
-def change_case(case):
+def modify_text(case):
     keyboard = Controller()
     data = pyperclip.paste()
     print(f'current: {data}')
@@ -51,18 +50,18 @@ def change_case(case):
     print(f'pasted: {data}')
     print(f'{case} done')
 
-combos = {
+combinations = {
 
-'lowercase': Combo(['alt'], 'l', change_case, case='lower'),
-'uppercase': Combo(['alt'], 'u', change_case, case='upper'),
-'flip': Combo(['alt'], 'k', change_case, case='flip'),
-'capitalize': Combo(['alt'], 'c', change_case, case='capitalize'),
-'reverse': Combo(['alt'], 'r', change_case, case='reverse'),
-'capitalize_every_word': Combo(['alt'], 'g', change_case, case='capitalize_every_word'),
-'alternate': Combo(['alt'], 'a', change_case, case='alternate'),
-'evaluate': Combo(['alt'], ']', change_case, case='eval')
+'lowercase': Combo(['alt'], 'l', modify_text, case='lower'),
+'uppercase': Combo(['alt'], 'u', modify_text, case='upper'),
+'flip': Combo(['alt'], 'k', modify_text, case='flip'),
+'capitalize': Combo(['alt'], 'c', modify_text, case='capitalize'),
+'reverse': Combo(['alt'], 'r', modify_text, case='reverse'),
+'capitalize_every_word': Combo(['alt'], 'g', modify_text, case='capitalize_every_word'),
+'alternate': Combo(['alt'], 'a', modify_text, case='alternate'),
+'evaluate': Combo(['alt'], ']', modify_text, case='eval')
 }
 
 
-keyboard_listener = KeyboardListener(combinations=combos)
+keyboard_listener = KeyboardListener(combinations=combinations)
 keyboard_listener.run()
