@@ -3,7 +3,7 @@ from pynput.keyboard import Key, Controller
 import pyperclip
 import time
 
-def modify_text(case):
+def modify_text(modification):
     keyboard = Controller()
     data = pyperclip.paste()
     print(f'current: {data}')
@@ -14,21 +14,21 @@ def modify_text(case):
     data = pyperclip.paste()
     print(f'copied: {data}')
 
-    if case == 'upper':
+    if modification == 'upper':
         data = data.upper()
-    elif case == 'lower':
+    elif modification == 'lower':
         data = data.lower()
-    elif case == 'capitalize':
+    elif modification == 'capitalize':
         data = data.capitalize()
-    elif case == 'flip':
+    elif modification == 'flip':
         data = ''.join([x.capitalize() if x == x.lower() else x.lower() for x in data])
-    elif case == 'reverse':
+    elif modification == 'reverse':
         data = data[::-1]
-    elif case == 'capitalize_every_word':
+    elif modification == 'capitalize_every_word':
         data = data.split(' ')
         data = [x.capitalize() for x in data]
         data = ' '.join(data)
-    elif case == 'alternate':
+    elif modification == 'alternate':
         data = [x for x in data]
         for index, character in enumerate(data):
             if index % 2 == 0:
@@ -36,7 +36,7 @@ def modify_text(case):
             else:
                 data[index] = character.lower()
         data = ''.join(data)
-    elif case == 'eval':
+    elif modification == 'eval':
         try:
             data = eval(data)
         except:
@@ -48,18 +48,18 @@ def modify_text(case):
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
     print(f'pasted: {data}')
-    print(f'{case} done')
+    print(f'{modification} done')
 
 combinations = {
 
-'lowercase': Combo(['alt'], 'l', modify_text, case='lower'),
-'uppercase': Combo(['alt'], 'u', modify_text, case='upper'),
-'flip': Combo(['alt'], 'k', modify_text, case='flip'),
-'capitalize': Combo(['alt'], 'c', modify_text, case='capitalize'),
-'reverse': Combo(['alt'], 'r', modify_text, case='reverse'),
-'capitalize_every_word': Combo(['alt'], 'g', modify_text, case='capitalize_every_word'),
-'alternate': Combo(['alt'], 'a', modify_text, case='alternate'),
-'evaluate': Combo(['alt'], ']', modify_text, case='eval')
+'lowercase': Combo(['alt'], 'l', modify_text, modification='lower'),
+'uppercase': Combo(['alt'], 'u', modify_text, modification='upper'),
+'flip': Combo(['alt'], 'k', modify_text, modification='flip'),
+'capitalize': Combo(['alt'], 'c', modify_text, modification='capitalize'),
+'reverse': Combo(['alt'], 'r', modify_text, modification='reverse'),
+'capitalize_every_word': Combo(['alt'], 'g', modify_text, modification='capitalize_every_word'),
+'alternate': Combo(['alt'], 'a', modify_text, modification='alternate'),
+'evaluate': Combo(['alt'], ']', modify_text, modification='eval')
 }
 
 
