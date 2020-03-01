@@ -23,15 +23,20 @@ def function_2(arguments):
 
 combinations = {
 
-      'function 1': Combo(['alt'], 'f', function_1, arguments), #Function 1 is executed when the user pressed Alt+F
-      'function 2': Combo(['ctr','alt'], 'g', function_2, arguments), #Function 2 is executed when the user pressed Alt+G
-      'function 3': Combo(['shift','alt'], 'H', function_2, arguments), #Be mindful when setting up Combos that include 'shift'. If the Combo includes the shift key, the character must be uppercase.
+      'function 1': Combo(['alt'], 'f', function_1, arguments), 
+        #Function 1 is executed when the user pressed Alt+F
+      'function 2': Combo(['ctr','alt'], 'g', function_2, arguments), 
+        #Function 2 is executed when the user pressed Alt+G
+      'function 3': Combo(['shift','alt'], 'H', function_2, arguments), 
+        #Be mindful when setting up Combos that include 'shift'. If the Combo includes the shift key, the character must be uppercase.
 }
 
 keywords = {
 
-    'keyword_1': KeyWord('keyword1', function_1, arguments), #Function 1 is executed when the user types 'keyword1'
-    'keyword_2': KeyWord('keyword1', function_2, arguments) #Function 2 is executed when the user types 'keyword2'
+    'keyword_1': KeyWord('keyword1', function_1, arguments), 
+      #Function 1 is executed when the user types 'keyword1'
+    'keyword_2': KeyWord('keyword1', function_2, arguments) 
+      #Function 2 is executed when the user types 'keyword2'
 }
 
 keyboard_listener = KeyboardListener(combinations=combinations, keywords=keywords)
