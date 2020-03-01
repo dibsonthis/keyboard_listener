@@ -47,6 +47,8 @@ class Combo:
     def __init__(self, special_keys, character, function, *args, **kwargs):
         if 'shift' in special_keys:
             character = character.upper()
+        elif character.is_upper():
+            special_keys = ['shift'] + special_keys
         self.special_keys = special_keys
         self.character = character
         self.function = function
