@@ -24,9 +24,9 @@ def function_2(arguments):
 combinations = {
 
       'function 1': Combo(['alt'], 'f', function_1, arguments), 
-        #Function 1 is executed when the user pressed Alt+F
+        #Function 1 is executed when the user presses Alt+F
       'function 2': Combo(['ctr','alt'], 'g', function_2, arguments), 
-        #Function 2 is executed when the user pressed Alt+G
+        #Function 2 is executed when the user presses Alt+G
       'function 3': Combo(['shift','alt'], 'H', function_2, arguments), 
         #Be mindful when setting up Combos that include 'shift'. If the Combo includes the shift key, the character must be uppercase.
 }
