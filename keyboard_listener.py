@@ -2,14 +2,14 @@ from pynput.keyboard import Key, Listener, KeyCode
 from functions import value, key_string, activate_special_key_if_pressed, deactivate_special_key_if_released, combo, current_key, is_special_key_pressed, release_all_special_keys, recent_input
 
 combos = {}
-inputs = {}
+keywords = {}
 
 # REVERT BACK TO NON-CLASS FOR IT TO WORK
 
 class KeyboardListener:
-    def __init__(self, combinations=combos, inputs=inputs):
+    def __init__(self, combinations=combos, keywords=keywords):
         self.combos = combinations
-        self.inputs = inputs
+        self.keywords = keywords
         
     def on_press(self, key):
         key = key_string(key)
@@ -24,11 +24,11 @@ class KeyboardListener:
             if combo(combination, current_key):
                 release_all_special_keys()
                 combination.execute()
-        for string in self.inputs.values():
+        for keyword in self.keywords.values():
             joined_recent_input = ''.join(recent_input)
-            if string.joined_string_list in joined_recent_input:
+            if keyword.joined_string_list in joined_recent_input:
                 recent_input = []
-                string.execute()
+                keyword.execute()
         print(recent_input)
         
 
@@ -54,7 +54,7 @@ class Combo:
     def execute(self):
         self.function(*self.args, **self.kwargs)
 
-class Input:
+class KeyWord:
     def __init__(self, string, function, *args, **kwargs):
         self.string = string
         self.string_list = ['space' if x == ' ' else x for x in self.string]

@@ -1,7 +1,8 @@
-from keyboard_listener import KeyboardListener, Combo, Input
+from keyboard_listener import KeyboardListener, Combo, KeyWord
 from pynput.keyboard import Key, Controller
 import pyperclip
 import time
+import random
 
 def copy_text():
     keyboard = Controller()
@@ -46,6 +47,11 @@ def modify_text(modification):
             else:
                 data[index] = character.lower()
         data = ''.join(data)
+    elif modification == 'spongebob':
+        data = [x for x in data]
+        for index, character in enumerate(data):
+            data[index] = random.choice([character.upper(), character.lower()])
+        data = ''.join(data)
     elif modification == 'eval':
         try:
             data = eval(data)
@@ -58,6 +64,10 @@ def modify_text(modification):
     print(f'pasted: {data}')
     print(f'{modification} done')
 
+def help_function():
+    pyperclip.copy(' *Instead of printing this message, the function could call emergency services*')
+    paste_text()
+
 combinations = {
 
 'lowercase': Combo(['alt'], 'l', modify_text, modification='lower'),
@@ -67,14 +77,15 @@ combinations = {
 'reverse': Combo(['alt'], 'r', modify_text, modification='reverse'),
 'capitalize_every_word': Combo(['alt'], 'g', modify_text, modification='capitalize_every_word'),
 'alternate': Combo(['alt'], 'a', modify_text, modification='alternate'),
+'spongebob': Combo(['alt'], 'b', modify_text, modification='spongebob'),
 'evaluate': Combo(['alt'], ']', modify_text, modification='eval')
 }
 
-inputs = {
+keywords = {
 
-    'test': Input('help', print, 'HELP ME')
+    'help': KeyWord('HELP', help_function)
 }
 
 
-keyboard_listener = KeyboardListener(combinations=combinations, inputs=inputs)
+keyboard_listener = KeyboardListener(combinations=combinations, keywords=keywords)
 keyboard_listener.run()
