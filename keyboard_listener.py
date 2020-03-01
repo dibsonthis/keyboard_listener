@@ -45,6 +45,8 @@ class KeyboardListener:
 
 class Combo:
     def __init__(self, special_keys, character, function, *args, **kwargs):
+        if 'shift' in special_keys:
+            character = character.upper()
         self.special_keys = special_keys
         self.character = character
         self.function = function
