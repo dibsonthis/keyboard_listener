@@ -42,3 +42,5 @@ keywords = {
 keyboard_listener = KeyboardListener(combinations=combinations, keywords=keywords)
 keyboard_listener.run()
 ```
+
+To see it in action, please take a look at the video titled **keyboard_listener_full_demo.mp4**
