@@ -5,6 +5,8 @@ current_key = None
 
 is_special_key_pressed = {'ctrl':False, 'shift':False, 'alt':False, 'cmd':False}
 
+recent_input = []
+
 def value(key):
     try:
         return key.char

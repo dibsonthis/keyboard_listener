@@ -1,4 +1,4 @@
-from keyboard_listener import KeyboardListener, Combo
+from keyboard_listener import KeyboardListener, Combo, Input
 from pynput.keyboard import Key, Controller
 import pyperclip
 import time
@@ -70,6 +70,11 @@ combinations = {
 'evaluate': Combo(['alt'], ']', modify_text, modification='eval')
 }
 
+inputs = {
 
-keyboard_listener = KeyboardListener(combinations=combinations)
+    'test': Input('help', print, 'HELP ME')
+}
+
+
+keyboard_listener = KeyboardListener(combinations=combinations, inputs=inputs)
 keyboard_listener.run()
