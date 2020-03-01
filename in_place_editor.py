@@ -17,6 +17,12 @@ def paste_text():
     keyboard.press('v')
     keyboard.release(Key.ctrl_l)
 
+def delete(string):
+    keyboard = Controller()
+    for char in string:
+        keyboard.press(Key.backspace)
+        keyboard.release(Key.backspace)
+        time.sleep(0.05)
 
 def modify_text(modification):
     data = pyperclip.paste()
@@ -68,6 +74,11 @@ def help_function():
     pyperclip.copy(' *Instead of printing this message, the function could call emergency services*')
     paste_text()
 
+def replace(old, new):
+    pyperclip.copy(new)
+    delete(old)
+    paste_text()
+
 combinations = {
 
 'lowercase': Combo(['alt'], 'l', modify_text, modification='lower'),
@@ -83,7 +94,8 @@ combinations = {
 
 keywords = {
 
-    'help': KeyWord('HELP', help_function)
+    'signature': KeyWord('-sig', replace, '-sig', 'Kind Regards,\nJohn from Apple Sales Department'),
+    'code-4544': KeyWord('-4544', replace, '-4544', 'Product Code: 4544\nProduct Name: Apple Mac II\nProduct Price: $544.95')
 }
 
 
