@@ -16,8 +16,9 @@ class KeyboardListener:
         global current_key
         global is_special_key_pressed
         global recent_input
-        if len(recent_input) <= 100:
-            recent_input.append(key)
+        recent_input.append(key)
+        if len(recent_input) > 100:
+            recent_input = []
         current_key = key
         activate_special_key_if_pressed(key)
         for combination in self.combos.values():
@@ -29,6 +30,7 @@ class KeyboardListener:
             if keyword.joined_string_list in joined_recent_input:
                 recent_input = []
                 keyword.execute()
+        print(recent_input)
         
 
     def on_release(self, key):
