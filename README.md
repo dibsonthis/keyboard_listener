@@ -1,8 +1,6 @@
 # keyboard_listener
 
-Keyboard Listener is a module that allows you to create custom hotkeys (combinations) or custom keywords and bind them to custom functions in Python. It's really easy to use and can be installed via pip:
-
-`pip install keyboard_listener`
+Keyboard Listener is a module that allows you to create custom hotkeys (combinations) or custom keywords and bind them to custom functions in Python.
 
 **Combinations** are custom hotkeys that are bound to functions. When the combination is pressed, the function is executed. Combos are really easy to set up and can be seen in the example below.
 
