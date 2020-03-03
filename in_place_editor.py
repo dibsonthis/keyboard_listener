@@ -122,11 +122,6 @@ def modify_text(modification):
         for index, character in enumerate(data):
             data[index] = random.choice([character.upper(), character.lower()])
         data = ''.join(data)
-    elif modification == 'eval':
-        try:
-            data = eval(data)
-        except:
-            data = data
     elif modification == 'snake_case':
         data = data.split(' ')
         data = [x.lower() for x in data]
@@ -155,8 +150,7 @@ combinations = {
 'capitalize_every_word': Combo(['alt'], 'g', modify_text, modification='capitalize_every_word'),
 'alternate': Combo(['alt'], 'a', modify_text, modification='alternate'),
 'spongebob': Combo(['alt'], 'b', modify_text, modification='spongebob'),
-'snake_case': Combo(['alt'], 'm', modify_text, modification='snake_case'),
-'evaluate': Combo(['alt'], ']', modify_text, modification='eval')
+'snake_case': Combo(['alt'], 'm', modify_text, modification='snake_case')
 }
 
 keywords = {
