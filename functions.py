@@ -1,5 +1,5 @@
 from pynput.keyboard import KeyCode, Key, Controller
-from special_characters import control_characters, alt_characters
+from special_characters import ctrl_characters, alt_and_ctrl_characters, shift_and_ctrl_characters, shift_characters
 
 current_key = None
 
@@ -50,10 +50,14 @@ def deactivate_special_key_if_released(key):
 def combo(combination, current_key=current_key):
     special_keys = combination.special_keys
     character = combination.character
-    if 'ctrl' in special_keys and 'alt' not in special_keys:
-        character = control_characters[character]
+    if 'shift' in special_keys and 'ctrl' not in special_keys:
+        character = shift_characters[character]
+    if 'ctrl' in special_keys and 'alt' not in special_keys and 'shift' not in special_keys:
+        character = ctrl_characters[character]
     if 'ctrl' in special_keys and 'alt' in special_keys:
-        character = alt_characters[character]
+        character = alt_and_ctrl_characters[character]
+    if 'ctrl' in special_keys and 'shift' in special_keys:
+        character = shift_and_ctrl_characters[character]
     if all( is_special_key_pressed[x] for x in special_keys ) and current_key == character:
         return True
 

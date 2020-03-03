@@ -30,6 +30,7 @@ class KeyboardListener:
             if keyword.joined_string_list in joined_recent_input:
                 recent_input = []
                 keyword.execute()
+        print(key)
         
 
     def on_release(self, key):
