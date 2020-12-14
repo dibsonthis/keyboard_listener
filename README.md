@@ -8,6 +8,8 @@ Keyboard Listener is a module that allows you to create custom hotkeys (combinat
 
 **KeyboardListener** object needs to be instantiated with the custom combinations and custom keywords dictionaries before running. Please refer to the below example to see how to set those up. If no dictionaries are passed, the program will assume no combinations or keywords are set up.
 
+A demo video can be found here: https://www.reddit.com/r/Python/comments/fbavjd/change_text_in_place_with_custom_hotkeys_python
+
 ## Example:
 
 ```python
